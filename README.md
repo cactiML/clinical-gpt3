@@ -17,8 +17,8 @@ MI in 2015 with stent placement in 2015 (on ASA and clopidogrel); unspecified an
 
 ```python
 res = query(
-	"Extract all medications from the text and the dosage and frequency for each if specified", 
-	text
+  "Extract all medications from the text and the dosage and frequency for each if specified", 
+  text
 )
 ```
 
@@ -34,8 +34,8 @@ res = query(
 
 ```python
 drugnames = query(
-	"Extract all medications from the text and print one medication per line", 
-	text
+  "Extract all medications from the text and print one medication per line", 
+  text
 )
 ```
 
@@ -48,8 +48,8 @@ drugnames = query(
 
 ```python
 res = query(
-	"For each of the drugs in the list, identify if it is the generic name or Brand name of the drug.", 
-	drugnames
+  "For each of the drugs in the list, identify if it is the generic name or Brand name of the drug.", 
+  drugnames
 )
 ```
 
@@ -65,7 +65,10 @@ brands = [x[0].strip() for x in list(
     filter(lambda x: "Brand" in x[1], [line.split("-") for line in res.split("\n")])
 )]
 print(f"{brands = }")
-res = query("Give me the generic name for", ",".join(brands))
+res = query(
+  "Give me the generic name for", 
+  ",".join(brands)
+)
 ```
 
     brands = ['Prozac']
@@ -77,8 +80,8 @@ res = query("Give me the generic name for", ",".join(brands))
 
 ```python
 res = query(
-	"List the medical conditions mentioned in this selection",
-	text
+  "List the medical conditions mentioned in this selection",
+  text
 )
 ```
 
@@ -90,8 +93,8 @@ res = query(
 
 ```python
 res = query(
-	"List the medical conditions mentioned in this selection and when each occured, if mentioned",
-	text
+  "List the medical conditions mentioned in this selection and when each occured, if mentioned",
+  text
 )
 ```
 
@@ -122,8 +125,8 @@ Neurological: Denies headaches, dizziness, or changes in mental status.
 
 ```python
 res = query(
-	"List the positive signs detailed in the following medical Review of Systems",
-	text
+  "List the positive signs detailed in the following medical Review of Systems",
+  text
 )
 ```
 
@@ -158,8 +161,8 @@ and CMP results were all within reference range.
 
 ```python
 res = query(
-	"What medications were given to patient on arrival?",
-	text
+  "What medications were given to patient on arrival?",
+  text
 )
 ```
 
@@ -173,8 +176,8 @@ res = query(
 
 ```python
 res = query(
-	"Why did patient call 911?",
-	text
+  "Why did patient call 911?",
+  text
 )
 ```
 
@@ -184,8 +187,8 @@ res = query(
 
 ```python
 res = query(
-	"Who brought the patient in to the ED?",
-	text
+  "Who brought the patient in to the ED?",
+  text
 )
 ```
 

@@ -1,8 +1,9 @@
 # clinical GPT-3
-This notebook is a small (work-in-progress) exploration of OpenAI's GPT-3 abilities on various Natural Language Processing tasks applied to clinical patient medical records. 
+This notebook is a small (work-in-progress) exploration of [OpenAI GPT-3](https://openai.com/api/) abilities to perform various 
+Natural Language Processing tasks in the **clinical domain, on patient medical records**. 
 
 These include:
-- [Clinical Entity Extraction](https://github.com/cactiML/clinical-gpt#entity-extraction)
+- [Medical Entity Extraction](https://github.com/cactiML/clinical-gpt#entity-extraction)
 - [Clinical Text Summarization](https://github.com/cactiML/clinical-gpt#summarization-of-clinical-text)
 - [Clinical Question Answering](https://github.com/cactiML/clinical-gpt#clinical-question-answering)
 

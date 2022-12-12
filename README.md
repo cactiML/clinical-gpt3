@@ -1,25 +1,3 @@
-```python
-import os
-import openai
-
-openai.api_key = os.environ["OPENAI_API_KEY"]
-
-def query(prompt, data, to_print=True):
-    response = openai.Completion.create(
-        model="text-davinci-003",
-        prompt="{}:\n\n{}".format(prompt, data),
-        temperature=0.7,
-        max_tokens=256,
-        top_p=1,
-        frequency_penalty=0,
-        presence_penalty=0
-    )
-
-    payload = response['choices'][0]['text'].strip()
-    if to_print:
-        print(payload)
-    return payload
-```
 
 ## Entity Extraction
 
@@ -27,14 +5,21 @@ def query(prompt, data, to_print=True):
 
 
 ```python
-text = "Mr. Henderson has PMH of COPD diagnosed in 2009 (minimally symptomatic, uses albuterol PRN); MI in 2015 with stent placement in 2015 (on ASA and clopidogrel); unspecified anxiety disorder (diagnosed by PCP in 2018 (on Prozac 10mg qd)."
+text = """
+Mr. Henderson has PMH of COPD diagnosed in 2009 (minimally symptomatic, uses albuterol PRN); 
+MI in 2015 with stent placement in 2015 (on ASA and clopidogrel); unspecified anxiety disorder 
+(diagnosed by PCP in 2018 (on Prozac 10mg qd).
+"""
 ```
 
 #### Medication Entity Extraction
 
 
 ```python
-res = query("Extract all medications from the text and the dosage and frequency for each if specified", text)
+res = query(
+	"Extract all medications from the text and the dosage and frequency for each if specified", 
+	text
+)
 ```
 
     Medications:
@@ -48,7 +33,10 @@ res = query("Extract all medications from the text and the dosage and frequency 
 
 
 ```python
-drugnames = query("Extract all medications from the text and print one medication per line", text)
+drugnames = query(
+	"Extract all medications from the text and print one medication per line", 
+	text
+)
 ```
 
     Albuterol
@@ -59,7 +47,10 @@ drugnames = query("Extract all medications from the text and print one medicatio
 
 
 ```python
-res = query("For each of the drugs in the list, identify if it is the generic name or Brand name of the drug.", drugnames)
+res = query(
+	"For each of the drugs in the list, identify if it is the generic name or Brand name of the drug.", 
+	drugnames
+)
 ```
 
     Albuterol - Generic Name
@@ -85,7 +76,10 @@ res = query("Give me the generic name for", ",".join(brands))
 
 
 ```python
-res = query("List the medical conditions mentioned in this selection", text)
+res = query(
+	"List the medical conditions mentioned in this selection",
+	text
+)
 ```
 
     1. COPD (Chronic Obstructive Pulmonary Disease)
@@ -95,7 +89,10 @@ res = query("List the medical conditions mentioned in this selection", text)
 
 
 ```python
-res = query("List the medical conditions mentioned in this selection and when each occured, if mentioned", text)
+res = query(
+	"List the medical conditions mentioned in this selection and when each occured, if mentioned",
+	text
+)
 ```
 
     Medical Conditions:
@@ -124,7 +121,10 @@ Neurological: Denies headaches, dizziness, or changes in mental status.
 
 
 ```python
-res = query("List the positive signs detailed in the following medical Review of Systems", text)
+res = query(
+	"List the positive signs detailed in the following medical Review of Systems",
+	text
+)
 ```
 
     Positive Signs: Discomfort, mild distress, chest pain, feeling of pressure in the chest.
@@ -136,17 +136,31 @@ res = query("List the positive signs detailed in the following medical Review of
 ```python
 text = """
 HISTORY OF PRESENT ILLNESS:
-Roger Henderson is a 65 yo male with PMH of COPD, MI s/p stent placement 2015, anxiety, presenting to CMC ED complaining of shortness of breath and chest pain for past 30 minutes. Patient reports he was at home on his couch watching TV when he began experiencing pain which he describes as a sharp, stabbing sensation in the center of his chest. Patient concurrently began experincing shortness of breath and feeling of pressure in his chest. He called 911 and EMS was sent to his house to pick him up and bring him to ED. 
+Roger Henderson is a 65 yo male with PMH of COPD, MI s/p stent placement 2015, anxiety, 
+presenting to CMC ED complaining of shortness of breath and chest pain for past 30 minutes. 
+Patient reports he was at home on his couch watching TV when he began experiencing pain 
+which he describes as a sharp, stabbing sensation in the center of his chest. Patient 
+concurrently began experincing shortness of breath and feeling of pressure in his chest. 
+He called 911 and EMS was sent to his house to pick him up and bring him to ED. 
 
-On arrival to ED, patient was diaphoretic and in pain, and was gasping for air while answering questions. Patient describes the pain as 8/10 in severity and has not changed in character or intensity over the past 30 minutes. Patient denies any radiation of pain beyond chest. Patient denies any N/V. Vitals were as follows -- BP 130/82; HR 110 bpm;  RR 24 breaths/min; O2 Sat 98% on room air.
+On arrival to ED, patient was diaphoretic and in pain, and was gasping for air while 
+answering questions. Patient describes the pain as 8/10 in severity and has not changed in 
+character or intensity over the past 30 minutes. Patient denies any radiation of pain beyond 
+chest. Patient denies any N/V. Vitals were as follows -- BP 130/82; HR 110 bpm;  
+RR 24 breaths/min; O2 Sat 98% on room air.
 
-At ED, aspirin and nitroglycerin was administered with minimal relief in symptoms. EKG was performed which did not indicate any ST/T wave changes. Troponin level non-elevated. CBC and CMP results were all within reference range. 
+At ED, aspirin and nitroglycerin was administered with minimal relief in symptoms. EKG was 
+performed which did not indicate any ST/T wave changes. Troponin level non-elevated. CBC
+and CMP results were all within reference range. 
 """
 ```
 
 
 ```python
-res = query("What medications were given to patient on arrival?", text)
+res = query(
+	"What medications were given to patient on arrival?",
+	text
+)
 ```
 
     Chest x-ray was negative for any acute process and patient was given oxygen to help with his breathing. 
@@ -158,7 +172,10 @@ res = query("What medications were given to patient on arrival?", text)
 
 
 ```python
-res = query("Why did patient call 911?", text)
+res = query(
+	"Why did patient call 911?",
+	text
+)
 ```
 
     The patient called 911 because he was experiencing chest pain and shortness of breath which was severe enough to warrant medical attention.
@@ -166,7 +183,10 @@ res = query("Why did patient call 911?", text)
 
 
 ```python
-res = query("Who brought the patient in to the ED?", text)
+res = query(
+	"Who brought the patient in to the ED?",
+	text
+)
 ```
 
     EMS brought the patient in to the ED.

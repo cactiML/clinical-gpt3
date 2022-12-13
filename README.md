@@ -9,14 +9,13 @@ These include:
 
 If you have any comments or additions, please feel free to reach out to me on Twitter [@samarthrawal](https://twitter.com/samarthrawal), via email (in my [GitHub profile](http://github.com/samrawal)), or feel free to submit a PR with any interesting findings!
 
+<p align="center"> <img src="icon.png" alt="DALL-E generated icon" width="250px"/> </p>
+
 Some notes:
 - This is meant to just be a high-level exploration of possible capabilities -- several of these results are cherry-picked in the sense that they required a couple runs/reformulating of the prompt.
 - This README file is basically the Jupyter Notebook in this repository with some small (mostly formatting-related) changes. 
 - If you play around with the notebook, make sure submitting queries to the OpenAI API meets the data use agreement for whatever data you are using.
 
-<p align="center">
-  <img src="icon.png" alt="DALL-E generated icon" width="100px"/>
-</p>
 
 
 

@@ -14,6 +14,11 @@ Some notes:
 - This README file is basically the Jupyter Notebook in this repository with some small (mostly formatting-related) changes. 
 - If you play around with the notebook, make sure submitting queries to the OpenAI API meets the data use agreement for whatever data you are using.
 
+<p align="center">
+  <img src="icon.png" alt="DALL-E generated icon" width="100px"/>
+</p>
+
+
 
 ## Entity Extraction
 
